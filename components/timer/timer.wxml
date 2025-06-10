@@ -1,0 +1,5 @@
+<!--components/timer/timer.wxml-->
+<view class="timer {{warning ? 'timer-warning' : ''}}">
+  <text class="emoji">⏰</text>
+  <text class="time-text">{{timeLeft}}s</text>
+</view>

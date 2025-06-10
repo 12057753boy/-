@@ -1,0 +1,132 @@
+<!--pages/game/game.wxml-->
+<view class="container">
+  <!-- 游戏头部信息 -->
+  <view class="game-header">
+    <view class="players-info">
+      <view class="player-card {{currentPlayer === myInfo.openid ? 'active' : ''}}">
+        <image class="player-avatar" src="{{myInfo.avatarUrl}}" mode="aspectFill"></image>
+        <view class="player-name">{{myInfo.nickName}}</view>
+        <view class="player-status">
+          <text wx:if="{{currentPlayer === myInfo.openid}}">🎯 你的回合</text>
+          <text wx:else>⏳ 等待中</text>
+        </view>
+      </view>
+      
+      <view class="vs-indicator">
+        <text class="emoji">⚔️</text>
+        <text>VS</text>
+      </view>
+      
+      <view class="player-card {{currentPlayer === opponentInfo.openid ? 'active' : ''}}">
+        <image class="player-avatar" src="{{opponentInfo.avatarUrl}}" mode="aspectFill"></image>
+        <view class="player-name">{{opponentInfo.nickName}}</view>
+        <view class="player-status">
+          <text wx:if="{{currentPlayer === opponentInfo.openid}}">🎯 对方回合</text>
+          <text wx:else>⏳ 等待中</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 游戏状态和计时器 -->
+    <view class="game-status">
+      <view class="phase-info">
+        <text wx:if="{{currentPhase === 'bomb_setup'}}">💣 设置炸弹阶段</text>
+        <text wx:elif="{{currentPhase === 'game_play'}}">🎮 游戏进行中</text>
+        <text wx:elif="{{currentPhase === 'result'}}">🏆 游戏结束</text>
+      </view>
+      
+      <view class="timer {{timeLeft <= 10 ? 'timer-warning' : ''}}">
+        <text class="emoji">⏰</text>
+        <text class="time-text">{{timeLeft}}s</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 游戏网格 -->
+  <view class="game-grid">
+    <view class="grid-container">
+      <view 
+        class="grid-cell {{item.status}} {{selectedCell === item.id ? 'selected' : ''}}"
+        wx:for="{{gridData}}" 
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onCellTap"
+      >
+        <view class="cell-content">
+          <text class="cell-emoji" wx:if="{{item.emoji}}">{{item.emoji}}</text>
+          <view class="cell-index">{{item.id + 1}}</view>
+        </view>
+        
+        <!-- 爆炸特效 -->
+        <view class="explosion-effect" wx:if="{{showExplosion && explosionPosition === item.id}}">
+          <text class="explosion-emoji">💥</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作提示 -->
+  <view class="game-tips">
+    <view wx:if="{{currentPhase === 'bomb_setup'}}">
+      <text wx:if="{{myBombPosition === null}}">请选择一个格子放置炸弹 💣</text>
+      <text wx:else>炸弹已放置，等待对手设置...</text>
+    </view>
+    <view wx:elif="{{currentPhase === 'game_play'}}">
+      <text wx:if="{{isMyTurn}}">轮到你了，选择一个格子 🎯</text>
+      <text wx:else>等待对手选择...</text>
+    </view>
+  </view>
+
+  <!-- 确认按钮 -->
+  <view class="confirm-section" wx:if="{{showConfirmButton}}">
+    <button class="btn btn-primary confirm-btn" bindtap="confirmSelection">
+      <text class="emoji">✅</text>
+      <text>确认选择</text>
+    </button>
+  </view>
+
+  <!-- 游戏结果弹窗 -->
+  <view class="result-modal" wx:if="{{showResultModal}}">
+    <view class="modal-overlay" bindtap="closeResultModal"></view>
+    <view class="modal-content">
+      <view class="result-header">
+        <text class="result-emoji" wx:if="{{gameResult === 'win'}}">🎉</text>
+        <text class="result-emoji" wx:elif="{{gameResult === 'lose'}}">😢</text>
+        <text class="result-emoji" wx:else>🤝</text>
+        
+        <view class="result-title">
+          <text wx:if="{{gameResult === 'win'}}">恭喜获胜！</text>
+          <text wx:elif="{{gameResult === 'lose'}}">很遗憾失败了</text>
+          <text wx:else>平局</text>
+        </view>
+      </view>
+      
+      <view class="result-actions">
+        <button class="btn btn-primary" bindtap="restartGame">
+          <text class="emoji">🔄</text>
+          <text>重来一局</text>
+        </button>
+        
+        <button class="btn btn-secondary" bindtap="exitGame">
+          <text class="emoji">🚪</text>
+          <text>退出游戏</text>
+        </button>
+      </view>
+      
+      <view class="result-timer">
+        <text>{{timeLeft}}秒后自动退出</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 爆炸全屏特效 -->
+  <view class="explosion-overlay" wx:if="{{showExplosion}}">
+    <view class="explosion-content">
+      <text class="big-explosion">💥</text>
+      <view class="explosion-text">
+        <text wx:if="{{gameResult === 'win'}}">你赢了！</text>
+        <text wx:else>你输了！</text>
+      </view>
+    </view>
+  </view>
+</view>

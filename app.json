@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/room/room",
+    "pages/game/game"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff6b6b",
+    "navigationBarTitleText": "炸弹大作战",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f8f9fa"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#ff6b6b",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "cloud": true,
+  "permission": {
+    "scope.userInfo": {
+      "desc": "用于完善游戏资料"
+    }
+  },
+  "requiredBackgroundModes": ["audio"],
+  "plugins": {},
+  "resizable": true,
+  "usingComponents": {
+    "game-grid": "/components/grid/grid",
+    "game-timer": "/components/timer/timer",
+    "explosion-effect": "/components/explosion/explosion"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
