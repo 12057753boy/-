@@ -1,0 +1,52 @@
+/* components/explosion/explosion.wxss */
+.explosion-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.explosion-content {
+  text-align: center;
+  color: white;
+}
+
+.big-explosion {
+  font-size: 200rpx;
+  display: block;
+  margin-bottom: 32rpx;
+  animation: explode 1s ease-out;
+}
+
+.explosion-text {
+  font-size: 64rpx;
+  font-weight: 700;
+  text-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

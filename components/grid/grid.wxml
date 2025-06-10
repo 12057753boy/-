@@ -1,0 +1,15 @@
+<!--components/grid/grid.wxml-->
+<view class="grid-container">
+  <view 
+    class="grid-cell {{item.status}} {{selectedCell === item.id ? 'selected' : ''}}"
+    wx:for="{{gridData}}" 
+    wx:key="id"
+    data-id="{{item.id}}"
+    bindtap="onCellTap"
+  >
+    <view class="cell-content">
+      <text class="cell-emoji" wx:if="{{item.emoji}}">{{item.emoji}}</text>
+      <view class="cell-index">{{item.id + 1}}</view>
+    </view>
+  </view>
+</view>

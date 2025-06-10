@@ -1,0 +1,347 @@
+/* pages/game/game.wxss */
+.container {
+  padding: 24rpx;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fd79a8 0%, #fdcb6e 100%);
+}
+
+/* 游戏头部 */
+.game-header {
+  margin-bottom: 32rpx;
+}
+
+.players-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.player-card {
+  flex: 1;
+  background: white;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 3rpx solid transparent;
+}
+
+.player-card.active {
+  border-color: #ff6b6b;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 107, 0.3);
+  transform: scale(1.05);
+}
+
+.player-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-bottom: 12rpx;
+  border: 3rpx solid #ff6b6b;
+}
+
+.player-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #2d3436;
+  margin-bottom: 8rpx;
+}
+
+.player-status {
+  font-size: 24rpx;
+  color: #636e72;
+}
+
+.vs-indicator {
+  margin: 0 24rpx;
+  text-align: center;
+}
+
+.vs-indicator .emoji {
+  font-size: 48rpx;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.vs-indicator text:last-child {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: white;
+}
+
+/* 游戏状态 */
+.game-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+
+.phase-info {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #00b894;
+}
+
+.timer.timer-warning {
+  color: #e17055;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.timer .emoji {
+  margin-right: 8rpx;
+  font-size: 36rpx;
+}
+
+/* 游戏网格 */
+.game-grid {
+  margin-bottom: 32rpx;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 8rpx;
+  background: white;
+  padding: 24rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
+}
+
+.grid-cell {
+  aspect-ratio: 1;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 2rpx solid transparent;
+  cursor: pointer;
+}
+
+.grid-cell:hover {
+  background: #e9ecef;
+  transform: scale(1.05);
+}
+
+.grid-cell.selected {
+  background: #ff6b6b;
+  border-color: #e55656;
+  transform: scale(1.1);
+  box-shadow: 0 4rpx 16rpx rgba(255, 107, 107, 0.4);
+}
+
+.grid-cell.bomb {
+  background: #e17055;
+}
+
+.grid-cell.exploded {
+  background: #d63031;
+  animation: explode 0.5s ease-out;
+}
+
+.cell-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.cell-emoji {
+  font-size: 48rpx;
+  line-height: 1;
+}
+
+.cell-index {
+  position: absolute;
+  top: 4rpx;
+  left: 4rpx;
+  font-size: 20rpx;
+  color: #999;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 4rpx;
+  padding: 2rpx 6rpx;
+  line-height: 1;
+}
+
+/* 爆炸特效 */
+.explosion-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 0, 0, 0.8);
+  border-radius: 12rpx;
+  animation: explosion 1s ease-out;
+}
+
+.explosion-emoji {
+  font-size: 64rpx;
+  animation: bounce 0.6s ease-in-out infinite;
+}
+
+/* 操作提示 */
+.game-tips {
+  text-align: center;
+  margin-bottom: 24rpx;
+  padding: 24rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  color: #2d3436;
+}
+
+/* 确认按钮 */
+.confirm-section {
+  text-align: center;
+  margin-bottom: 32rpx;
+}
+
+.confirm-btn {
+  width: 300rpx;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* 结果弹窗 */
+.result-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 24rpx;
+  padding: 48rpx;
+  text-align: center;
+  min-width: 500rpx;
+  animation: slideUp 0.3s ease-out;
+}
+
+.result-header {
+  margin-bottom: 48rpx;
+}
+
+.result-emoji {
+  font-size: 120rpx;
+  display: block;
+  margin-bottom: 24rpx;
+}
+
+.result-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #2d3436;
+}
+
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  margin-bottom: 32rpx;
+}
+
+.result-timer {
+  font-size: 24rpx;
+  color: #636e72;
+}
+
+/* 爆炸全屏特效 */
+.explosion-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.explosion-content {
+  text-align: center;
+  color: white;
+}
+
+.big-explosion {
+  font-size: 200rpx;
+  display: block;
+  margin-bottom: 32rpx;
+  animation: explode 1s ease-out;
+}
+
+.explosion-text {
+  font-size: 64rpx;
+  font-weight: 700;
+  text-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.5);
+}
+
+/* 动画 */
+@keyframes explode {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes explosion {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}

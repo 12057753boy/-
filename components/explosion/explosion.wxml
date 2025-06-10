@@ -1,0 +1,10 @@
+<!--components/explosion/explosion.wxml-->
+<view class="explosion-overlay" wx:if="{{show}}" bindtap="onTap">
+  <view class="explosion-content">
+    <text class="big-explosion">💥</text>
+    <view class="explosion-text">
+      <text wx:if="{{result === 'win'}}">你赢了！</text>
+      <text wx:else>你输了！</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+/* components/timer/timer.wxss */
+.timer {
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #00b894;
+}
+
+.timer.timer-warning {
+  color: #e17055;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.timer .emoji {
+  margin-right: 8rpx;
+  font-size: 36rpx;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

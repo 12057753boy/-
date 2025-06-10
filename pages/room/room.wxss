@@ -1,0 +1,291 @@
+/* pages/room/room.wxss */
+.container {
+  padding: 32rpx;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+}
+
+/* 房间头部 */
+.room-header {
+  text-align: center;
+  margin-bottom: 32rpx;
+}
+
+.room-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #2d3436;
+  margin-bottom: 16rpx;
+  position: relative;
+}
+
+.room-title .emoji {
+  margin-right: 12rpx;
+  font-size: 40rpx;
+}
+
+.copy-btn {
+  position: absolute;
+  right: 0;
+  background: #f8f9fa;
+  border: 2rpx solid #ddd;
+  border-radius: 8rpx;
+  padding: 8rpx 12rpx;
+  font-size: 24rpx;
+  margin: 0;
+  min-height: auto;
+  line-height: 1;
+}
+
+.copy-btn .emoji {
+  font-size: 24rpx;
+  margin: 0;
+}
+
+.room-status {
+  display: flex;
+  justify-content: center;
+  gap: 32rpx;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #636e72;
+}
+
+.status-item .emoji {
+  margin-right: 8rpx;
+  font-size: 32rpx;
+}
+
+/* 玩家区域 */
+.players-section {
+  margin-bottom: 32rpx;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2d3436;
+  margin-bottom: 24rpx;
+}
+
+.section-title .emoji {
+  margin-right: 12rpx;
+  font-size: 36rpx;
+}
+
+.players-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.player-item {
+  padding: 24rpx;
+  background: #f8f9fa;
+  border-radius: 16rpx;
+  border: 2rpx solid transparent;
+  transition: all 0.3s ease;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+}
+
+.player-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+  border: 3rpx solid #74b9ff;
+}
+
+.player-details {
+  flex: 1;
+}
+
+.player-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2d3436;
+  margin-bottom: 8rpx;
+  display: flex;
+  align-items: center;
+}
+
+.host-badge {
+  margin-left: 8rpx;
+  font-size: 24rpx;
+}
+
+.player-status {
+  display: flex;
+  align-items: center;
+}
+
+.status-indicator {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
+}
+
+.status-ready {
+  background-color: #00b894;
+  box-shadow: 0 0 8rpx rgba(0, 184, 148, 0.5);
+}
+
+.status-waiting {
+  background-color: #fdcb6e;
+  box-shadow: 0 0 8rpx rgba(253, 203, 110, 0.5);
+}
+
+.status-text {
+  font-size: 24rpx;
+  color: #636e72;
+}
+
+/* 空位样式 */
+.empty-slot {
+  border: 2rpx dashed #ddd;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.empty-player {
+  display: flex;
+  align-items: center;
+}
+
+.empty-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+}
+
+.empty-avatar .emoji {
+  font-size: 40rpx;
+  color: #999;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* 游戏控制 */
+.game-controls {
+  margin-bottom: 32rpx;
+}
+
+.game-controls .btn {
+  margin-bottom: 16rpx;
+}
+
+/* 游戏规则 */
+.game-rules {
+  margin-bottom: 32rpx;
+}
+
+.rules-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.rule-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 16rpx;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+}
+
+.rule-number {
+  width: 48rpx;
+  height: 48rpx;
+  background: #74b9ff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  font-weight: 600;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.rule-text {
+  font-size: 28rpx;
+  color: #636e72;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* 底部操作 */
+.bottom-actions {
+  margin-top: 32rpx;
+}
+
+/* 倒计时遮罩 */
+.countdown-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.countdown-content {
+  text-align: center;
+  color: white;
+}
+
+.countdown-title {
+  font-size: 48rpx;
+  font-weight: 600;
+  margin-bottom: 32rpx;
+}
+
+.countdown-number {
+  font-size: 120rpx;
+  font-weight: 800;
+  margin-bottom: 24rpx;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.countdown-text {
+  font-size: 32rpx;
+  opacity: 0.8;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
